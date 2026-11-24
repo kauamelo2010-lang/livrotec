@@ -1140,7 +1140,7 @@ export default function App() {
           </div>
 
           {/* 6. Book Cards Grid */}
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
             {filteredBooks.length === 0 ? (
               <div className={`py-16 text-center p-8 rounded-3xl border space-y-4 max-w-lg mx-auto shadow-sm ${
                 isDarkMode 
@@ -1173,7 +1173,7 @@ export default function App() {
                 </button>
               </div>
             ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 sm:gap-6">
+              <div className="mobile-books-grid grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6">
                 {filteredBooks.map((book) => {
                   const bookActiveLoans = loans.filter((l) => l.bookId === book.id && l.status === 'active');
                   const userLoan = bookActiveLoans.find(

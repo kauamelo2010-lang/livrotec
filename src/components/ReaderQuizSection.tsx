@@ -462,26 +462,26 @@ export const ReaderQuizSection: React.FC<ReaderQuizSectionProps> = ({
                 </div>
 
                 {recommendedBooks.length > 0 ? (
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="mobile-books-grid grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
                     {recommendedBooks.map((book) => {
                       const themeConfig = THEMES.find((t) => t.id === book.theme);
                       return (
                         <div
                           key={book.id}
-                          className={`p-4 rounded-2xl border flex flex-col justify-between transition-all hover:shadow-lg group hover:-translate-y-1 ${
+                          className={`p-2.5 sm:p-4 rounded-xl sm:rounded-2xl border flex flex-col justify-between transition-all hover:shadow-lg group hover:-translate-y-1 ${
                             isDarkMode 
                               ? 'bg-[#152238] border-slate-700/80 hover:border-amber-400' 
                               : 'bg-[#faf8f5] border-[#1c1c1c]/15 hover:border-[#1c1c1c]/40'
                           }`}
                         >
-                          <div className="flex gap-3.5">
-                            <div className="w-16 sm:w-20 aspect-2/3 shrink-0 rounded-xl overflow-hidden shadow border border-black/10">
+                          <div className="flex flex-col sm:flex-row gap-2 sm:gap-3.5">
+                            <div className="w-full aspect-[3/4] sm:w-20 sm:aspect-2/3 shrink-0 rounded-lg sm:rounded-xl overflow-hidden shadow border border-black/10">
                               <BookCover book={book} size="sm" />
                             </div>
 
                             <div className="min-w-0 flex-1 flex flex-col justify-between">
                               <div>
-                                <span className={`text-[9px] font-black uppercase px-2 py-0.5 rounded inline-block mb-1 ${
+                                <span className={`text-[8px] sm:text-[9px] font-black uppercase px-1.5 sm:px-2 py-0.5 rounded inline-block mb-1 max-w-full truncate ${
                                   isDarkMode ? 'bg-slate-800 text-amber-300' : 'bg-[#ede8df] text-[#1c1c1c]'
                                 }`}>
                                   {themeConfig?.name || book.theme}
@@ -489,15 +489,15 @@ export const ReaderQuizSection: React.FC<ReaderQuizSectionProps> = ({
                                 <h5 className="font-bold text-xs sm:text-sm line-clamp-2 leading-tight">
                                   {book.title}
                                 </h5>
-                                <p className={`text-[11px] truncate mt-0.5 ${
+                                <p className={`text-[10px] sm:text-[11px] truncate mt-0.5 ${
                                   isDarkMode ? 'text-slate-400' : 'text-[#7d7567]'
                                 }`}>
                                   {book.author}
                                 </p>
                               </div>
 
-                              <div className="flex items-center gap-1.5 mt-2">
-                                <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${
+                              <div className="flex items-center gap-1.5 mt-1.5 sm:mt-2">
+                                <span className={`text-[9px] sm:text-[10px] font-bold px-1.5 py-0.5 rounded ${
                                   book.availableCopies > 0 
                                     ? 'bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300' 
                                     : 'bg-rose-100 dark:bg-rose-950 text-rose-800 dark:text-rose-300'
@@ -513,10 +513,10 @@ export const ReaderQuizSection: React.FC<ReaderQuizSectionProps> = ({
                           </div>
 
                           {/* Card Actions */}
-                          <div className="flex items-center gap-2 mt-3 pt-3 border-t border-inherit/15">
+                          <div className="flex items-center gap-1.5 sm:gap-2 mt-2 sm:mt-3 pt-2 sm:pt-3 border-t border-inherit/15">
                             <button
                               onClick={() => onSelectBook(book)}
-                              className={`flex-1 py-1.5 px-2 rounded-xl text-[11px] font-bold border transition-all cursor-pointer text-center ${
+                              className={`flex-1 py-1.5 px-1.5 sm:px-2 rounded-lg sm:rounded-xl text-[10px] sm:text-[11px] font-bold border transition-all cursor-pointer text-center truncate ${
                                 isDarkMode 
                                   ? 'bg-slate-800 hover:bg-slate-700 text-slate-200 border-slate-700' 
                                   : 'bg-[#ede8df] hover:bg-[#e4ddcf] text-[#1c1c1c] border-[#1c1c1c]/15'
@@ -528,7 +528,7 @@ export const ReaderQuizSection: React.FC<ReaderQuizSectionProps> = ({
                             <button
                               onClick={() => onStartLoan(book)}
                               disabled={book.availableCopies <= 0}
-                              className={`flex-1 py-1.5 px-2 rounded-xl text-[11px] font-bold transition-all cursor-pointer text-center flex items-center justify-center gap-1 ${
+                              className={`flex-1 py-1.5 px-1.5 sm:px-2 rounded-lg sm:rounded-xl text-[10px] sm:text-[11px] font-bold transition-all cursor-pointer text-center flex items-center justify-center gap-1 truncate ${
                                 book.availableCopies > 0
                                   ? isDarkMode
                                     ? 'bg-amber-400 hover:bg-amber-300 text-slate-950 font-black'
@@ -536,7 +536,7 @@ export const ReaderQuizSection: React.FC<ReaderQuizSectionProps> = ({
                                   : 'bg-slate-300 dark:bg-slate-800 text-slate-500 cursor-not-allowed'
                               }`}
                             >
-                              <Bookmark className="w-3 h-3" />
+                              <Bookmark className="hidden min-[400px]:block sm:block w-3 h-3 shrink-0" />
                               <span>Retirar</span>
                             </button>
                           </div>
